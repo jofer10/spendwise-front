@@ -2,11 +2,13 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { TokenService } from '../../auth/token.service';
 
-/** Rutas que NO llevan Authorization Bearer (login, register, refresh) */
+/** Rutas que NO llevan Authorization Bearer */
 const NO_BEARER_PATHS = [
   '/api/auth/login',
   '/api/auth/register',
   '/api/auth/refresh',
+  '/api/auth/forgot-password',
+  '/api/auth/reset-password',
 ];
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -31,11 +32,17 @@ export class ForgotPasswordComponent {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.form = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
     });
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['/auth/login']);
   }
 
   submit(): void {
@@ -45,14 +52,20 @@ export class ForgotPasswordComponent {
     }
     this.loading = true;
     this.error = '';
-    this.auth.forgotPassword(this.form.getRawValue()).subscribe({
-      next: () => {
+    this.auth.forgotPassword(this.form.getRawValue()).pipe(
+      finalize(() => {
         this.loading = false;
+        this.cdr.markForCheck();
+      })
+    ).subscribe({
+      next: () => {
         this.sent = true;
+        this.cdr.markForCheck();
       },
       error: (err) => {
-        this.loading = false;
-        this.error = err?.error?.message ?? 'Error al enviar el correo.';
+        const msg = err?.error?.message ?? err?.message;
+        this.error = Array.isArray(msg) ? msg[0] : (msg || 'Error al enviar el correo.');
+        this.cdr.markForCheck();
       },
     });
   }

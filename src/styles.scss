@@ -174,6 +174,27 @@ app-root {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
+/* Solo recuperar contraseña un poco más ancho */
+.spw-auth-form-wrap-forgot .spw-auth-card-forgot-wrap {
+  width: 520px;
+  max-width: 90vw;
+  display: flex;
+  justify-content: center; /* centra la card dentro del contenedor rojo */
+}
+
+/* Hacer que el formulario ocupe todo el ancho del contenedor rojo */
+.spw-auth-form-wrap-forgot .spw-auth-card-forgot-wrap .spw-auth-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.spw-auth-form-wrap-forgot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem; /* un poco más cerca del logo */
+}
+
 /* Forzar fondo oscuro en la card para que el texto claro se lea bien */
 .spw-auth-card.mat-mdc-card {
   background-color: rgba(30, 41, 59, 0.98);
@@ -393,6 +414,18 @@ app-root {
 .spw-error {
   color: #f87171;
   margin-bottom: 1rem;
+}
+
+.spw-success-text {
+  color: #4ade80;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.spw-success-hint {
+  color: #cbd5e1;
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
 }
 
 /* Autocompletado del navegador: mismo estilo oscuro que el resto del formulario */

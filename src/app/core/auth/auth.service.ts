@@ -8,7 +8,6 @@ import type {
   LoginResponse,
   RegisterRequest,
   ForgotPasswordRequest,
-  ResetPasswordRequest,
   RefreshResponse,
   AuthUser,
 } from './auth.types';
@@ -89,12 +88,14 @@ export class AuthService {
     return of(null);
   }
 
-  forgotPassword(body: ForgotPasswordRequest): Observable<{ message?: string }> {
-    return this.api.post<{ message?: string }>('/api/auth/forgot-password', body);
+  forgotPassword(body: ForgotPasswordRequest): Observable<void> {
+    // Backend responde 202 sin body; postNoBody usa blob para aceptar respuestas vacías
+    return this.api.postNoBody('/api/auth/forgot-password', body);
   }
 
-  resetPassword(body: ResetPasswordRequest): Observable<{ message?: string }> {
-    return this.api.post<{ message?: string }>('/api/auth/reset-password', body);
+  resetPassword(body: { token: string; newPassword: string }): Observable<void> {
+    // API espera token + newPassword; puede devolver 200 sin body
+    return this.api.postNoBody('/api/auth/reset-password', body);
   }
 
   getMe(): Observable<AuthUser> {

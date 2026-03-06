@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { EnvService } from '../env/env.service';
 
 @Injectable({ providedIn: 'root' })
@@ -27,6 +28,16 @@ export class ApiClient {
 
   post<T>(path: string, body: unknown): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}${path}`, body);
+  }
+
+  /** POST que acepta respuesta vacía (ej. 202 sin body) sin error de parse JSON */
+  postNoBody(path: string, body: unknown): Observable<void> {
+    return this.http.post(`${this.baseUrl}${path}`, body, {
+      observe: 'response',
+      responseType: 'blob',
+    }).pipe(
+      map(() => undefined)
+    );
   }
 
   put<T>(path: string, body: unknown): Observable<T> {
