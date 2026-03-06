@@ -1,0 +1,22 @@
+<div class="spw-auth-container">
+  <header class="spw-auth-top">
+    <div class="spw-auth-logo">
+      <img src="assets/logo-spendwise.png" alt="SpendWise" width="210" height="140" />
+    </div>
+  </header>
+  <div class="spw-auth-form-wrap">
+    <!-- Giro de carta: se aplasta al borde y se abre con el otro formulario -->
+    <div class="spw-auth-flip-wrap">
+      <div class="spw-auth-flip-giro" [class.spw-auth-flip-giro-active]="isGiroActive">
+        <div class="spw-auth-flip-content-layer">
+          <div class="spw-auth-flip-content-panel" [class.spw-auth-flip-content-hidden]="contentShowRegister">
+            <app-login (registerClick)="flipToRegister()" />
+          </div>
+          <div class="spw-auth-flip-content-panel" [class.spw-auth-flip-content-hidden]="!contentShowRegister">
+            <app-register (loginClick)="flipToLogin()" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

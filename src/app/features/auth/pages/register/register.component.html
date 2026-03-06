@@ -1,0 +1,66 @@
+<mat-card class="spw-auth-card">
+  <mat-card-header>
+    <mat-card-title class="spw-page-title">Registro</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      @if (error) {
+        <div class="spw-api-error">
+          <span class="spw-api-error-icon" aria-hidden="true">!</span>
+          <p class="spw-api-error-text">{{ error }}</p>
+        </div>
+      }
+      <mat-form-field appearance="outline" class="spw-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" />
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>El nombre es obligatorio</mat-error>
+        }
+        @if (form.get('name')?.hasError('minlength')) {
+          <mat-error>El nombre debe tener al menos 2 caracteres</mat-error>
+        }
+        @if (form.get('name')?.hasError('maxlength')) {
+          <mat-error>El nombre no puede superar 100 caracteres</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="spw-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        @if (form.get('email')?.hasError('required')) {
+          <mat-error>El email es obligatorio</mat-error>
+        }
+        @if (form.get('email')?.hasError('email')) {
+          <mat-error>Email no válido</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="spw-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" />
+        @if (form.get('password')?.hasError('required')) {
+          <mat-error>La contraseña es obligatoria</mat-error>
+        }
+        @if (form.get('password')?.hasError('minlength')) {
+          <mat-error>Mínimo 6 caracteres</mat-error>
+        }
+      </mat-form-field>
+      <div class="spw-form-actions">
+        <a href="#" class="spw-link" (click)="loginClick.emit(); $event.preventDefault()">Ya tengo cuenta</a>
+        <button mat-flat-button color="primary" type="submit" [disabled]="loading" class="spw-submit-btn">
+          @if (loading) {
+            <span class="spw-btn-loading">
+              <mat-spinner diameter="20"></mat-spinner>
+              <span>Registrando…</span>
+            </span>
+          } @else {
+            Registrarme
+          }
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <p style="text-align: center; margin: 0;">
+      ¿Ya tienes cuenta? <a href="#" class="spw-link" (click)="loginClick.emit(); $event.preventDefault()">Iniciar sesión</a>
+    </p>
+  </mat-card-footer>
+</mat-card>
