@@ -85,6 +85,20 @@ export class ResetPasswordComponent implements OnInit {
         setTimeout(() => this.router.navigate(['/auth/login']), 2000);
       },
       error: (err) => {
+        const raw = err?.error;
+        if (raw instanceof Blob) {
+          raw.text().then((text) => {
+            try {
+              const body = JSON.parse(text) as { message?: string | string[] };
+              const m = body?.message;
+              this.error = Array.isArray(m) ? m[0] : (m ?? 'Error al restablecer la contraseña.');
+            } catch {
+              this.error = 'Error al restablecer la contraseña.';
+            }
+            this.cdr.markForCheck();
+          });
+          return;
+        }
         const msg = err?.error?.message ?? err?.error;
         this.error = (typeof msg === 'string' ? msg : 'Error al restablecer la contraseña.');
         this.cdr.markForCheck();

@@ -12,7 +12,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
-      if (err.status === 401) {
+      const isAuthEndpoint = /\/api\/auth\/(login|register|forgot-password|reset-password)/.test(req.url);
+      if (err.status === 401 && !isAuthEndpoint) {
         return auth.refresh().pipe(
           switchMap(() => {
             const newToken = token.accessToken;

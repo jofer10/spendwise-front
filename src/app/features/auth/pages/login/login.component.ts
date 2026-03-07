@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
@@ -32,7 +32,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef
   ) {
     this.form = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
@@ -54,8 +55,10 @@ export class LoginComponent {
         window.location.href = '/app/dashboard';
       },
       error: (err) => {
+        this.loading = false;
         const msg = err?.error?.message;
         this.error = Array.isArray(msg) ? msg[0] : (msg || 'Error al iniciar sesión.');
+        this.cdr.markForCheck();
       },
     });
   }
