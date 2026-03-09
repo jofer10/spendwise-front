@@ -27,6 +27,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Material Icons: forzar que mat-icon use la fuente de iconos */
+mat-icon {
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'liga';
+}
+/* Fallback: si la fuente no carga, al menos el icono ocupa espacio */
+mat-icon:not(:empty) {
+  min-width: 24px;
+  min-height: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
@@ -440,5 +462,348 @@ app-root {
   -webkit-box-shadow: 0 0 0 1000px rgba(30, 41, 59, 0.98) inset !important;
   box-shadow: 0 0 0 1000px rgba(30, 41, 59, 0.98) inset !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ========== Dashboard / App (paleta SpendWise) ========== */
+.spw-dashboard-page {
+  color: #e2e8f0;
+}
+
+.spw-dashboard-page h1 {
+  color: #f1f5f9;
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.75rem;
+  line-height: 1.2;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.spw-card {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.spw-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.spw-card-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.spw-btn-primary {
+  background-color: #22c55e !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+.spw-btn-primary:hover:not([disabled]) {
+  background-color: #4ade80 !important;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+}
+.spw-btn-primary:active:not([disabled]) {
+  background-color: #16a34a !important;
+}
+
+.spw-btn-with-icon {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+}
+.spw-btn-with-icon mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Spinner verde en área dashboard */
+.spw-dashboard-page mat-spinner circle {
+  stroke: #22c55e !important;
+}
+
+.spw-quick-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.spw-quick-link:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.15);
+  transform: translateY(-2px);
+  color: #f1f5f9;
+}
+.spw-quick-link mat-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+  color: #22c55e;
+}
+
+.spw-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: -0.02em;
+}
+
+.spw-table-wrap {
+  overflow-x: auto;
+}
+.spw-dashboard-page .mat-mdc-table {
+  background: transparent !important;
+}
+.spw-dashboard-page .mat-mdc-header-row {
+  background: rgba(15, 23, 42, 0.6) !important;
+}
+.spw-dashboard-page .mat-mdc-header-cell {
+  color: #94a3b8 !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.spw-dashboard-page .mat-mdc-row {
+  border-bottom-color: rgba(148, 163, 184, 0.1) !important;
+}
+.spw-dashboard-page .mat-mdc-cell {
+  color: #e2e8f0 !important;
+}
+
+.spw-dashboard-page .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: rgba(30, 41, 59, 0.98);
+  --mdc-dialog-supporting-text-color: #cbd5e1;
+}
+.spw-dashboard-page .mat-mdc-dialog-title {
+  color: #f1f5f9 !important;
+}
+/* Inputs y selects: texto visible (contraste) y bordes claros en hover/focus */
+.spw-dashboard-page .mat-mdc-form-field .mdc-text-field__input,
+.spw-dashboard-page .mat-mdc-form-field .mat-mdc-input-element {
+  color: #f1f5f9 !important;
+}
+.spw-dashboard-page .mat-mdc-form-field .mdc-text-field__input::placeholder,
+.spw-dashboard-page .mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: #94a3b8 !important;
+}
+.spw-dashboard-page .mat-mdc-form-field.mat-focused .mdc-text-field__input::placeholder,
+.spw-dashboard-page .mat-mdc-form-field .mdc-text-field--focused .mdc-text-field__input::placeholder,
+.spw-dashboard-page .mat-mdc-form-field.mat-focused .mat-mdc-input-element::placeholder,
+.spw-dashboard-page .mat-mdc-form-field .mdc-text-field--focused .mat-mdc-input-element::placeholder {
+  color: #e2e8f0 !important;
+}
+.spw-dashboard-page .mat-mdc-form-field .mat-mdc-select-value,
+.spw-dashboard-page .mat-mdc-form-field .mat-mdc-select-value-text,
+.spw-dashboard-page .mat-mdc-form-field .mdc-list-item__primary-text {
+  color: #f1f5f9 !important;
+}
+.spw-dashboard-page .mat-mdc-form-field .mdc-floating-label {
+  color: #94a3b8 !important;
+}
+.spw-dashboard-page .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.5) !important;
+}
+.spw-dashboard-page .mat-mdc-form-field:hover .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.85) !important;
+}
+.spw-dashboard-page .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-dashboard-page .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #22c55e !important;
+}
+.spw-dashboard-page .mat-mdc-form-field .mat-mdc-select-arrow {
+  color: #94a3b8 !important;
+}
+/* Icono de calendario en campos Desde/Hasta: blanco para mejor visibilidad */
+.spw-dashboard-page .spw-date-filter-field .mat-datepicker-toggle .mat-icon,
+.spw-dashboard-page .spw-date-filter-field .mat-datepicker-toggle mat-icon {
+  color: #ffffff !important;
+}
+/* Borde rojo y mensaje cuando la fecha es inválida (día/mes/formato) */
+.spw-dashboard-page .spw-has-date-error .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-dashboard-page .spw-has-date-error.mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #f87171 !important;
+}
+.spw-dashboard-page .spw-has-date-error .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(248, 113, 113, 0.08);
+}
+.spw-dashboard-page .spw-has-date-error .mat-error {
+  color: #f87171;
+}
+.spw-dashboard-page .spw-has-date-error .mat-mdc-form-field-subscript-wrapper {
+  overflow: visible;
+  min-height: 1.5em;
+}
+
+/* Panel desplegable de mat-select: tema oscuro, minimalista (no blanco) */
+.spw-select-panel {
+  background: rgba(30, 41, 59, 0.98) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+}
+.spw-select-panel .mat-mdc-option,
+.spw-select-panel .mdc-list-item__primary-text {
+  color: #e2e8f0 !important;
+}
+.spw-select-panel .mat-mdc-option:hover,
+.spw-select-panel .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background: rgba(34, 197, 94, 0.12) !important;
+}
+.spw-select-panel .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text {
+  color: #f1f5f9 !important;
+}
+.spw-select-panel .mat-mdc-option .mat-icon,
+.spw-select-panel .mat-mdc-option mat-icon,
+.spw-select-panel .mat-mdc-option .mdc-list-item__meta {
+  color: #ffffff !important;
+}
+.spw-select-panel .mat-pseudo-checkbox-minimal::after {
+  border-color: #ffffff !important;
+}
+.spw-select-panel .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.spw-empty-state {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  color: #94a3b8;
+}
+.spw-empty-state .spw-empty-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+.spw-empty-state .spw-empty-desc {
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  color: #94a3b8;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.spw-empty-state p {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+.spw-empty-state mat-icon {
+  font-size: 56px;
+  width: 56px;
+  height: 56px;
+  color: rgba(148, 163, 184, 0.4);
+  margin-bottom: 1.25rem;
+}
+/* El icono del botón dentro del empty state no debe heredar el tamaño del icono decorativo */
+.spw-empty-state .spw-btn-with-icon mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: inherit;
+  margin-bottom: 0;
+}
+.spw-loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+}
+.spw-loading-wrap .spw-loading-text {
+  font-size: 0.9375rem;
+  color: #94a3b8;
+}
+.spw-loading-wrap mat-spinner {
+  --mdc-circular-progress-active-indicator-color: #22c55e;
+}
+
+/* Sidenav: esquinas rectas para unión perfecta con el navbar, sin hueco */
+.spw-sidenav,
+.spw-sidenav.mat-drawer,
+.mat-drawer.spw-sidenav {
+  background-color: rgba(30, 41, 59, 0.98) !important;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.spw-sidenav .mat-drawer-inner-container,
+.spw-sidenav [class*='inner-container'] {
+  border-radius: 0 !important;
+}
+/* Que el panel del drawer no tenga esquinas redondeadas (Material a veces las añade) */
+.mat-drawer:not(.mat-drawer-side),
+.spw-shell-container .mat-drawer {
+  border-radius: 0 !important;
+}
+.spw-shell-container .mat-drawer .mat-drawer-inner-container {
+  border-radius: 0 !important;
+}
+.spw-shell-container.mat-drawer-container {
+  padding: 0 !important;
+}
+/* No tocar el margin del drawer-content: Material lo usa para empujar el contenido a la derecha del menú */
+.spw-shell-container .mat-drawer-content {
+  padding: 0 !important;
+}
+.spw-app-toolbar {
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+.spw-main {
+  background: transparent;
+  /* Scrollbar pegada al borde derecho y en tonos del tema oscuro (no blanco) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) rgba(30, 41, 59, 0.9);
+}
+.spw-main::-webkit-scrollbar {
+  width: 10px;
+}
+.spw-main::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.9);
+}
+.spw-main::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 5px;
+}
+.spw-main::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.65);
+}
+
+/* Calendario (datepicker): letras de los días de la semana en mayúscula (L, M, M, J, V, S, D) */
+.mat-calendar-table-header th,
+.mat-calendar-table-header th span,
+.mat-datepicker-content .mat-calendar-table-header th,
+.mat-datepicker-content .mat-calendar-table-header th span,
+.mat-mdc-calendar .mat-calendar-table-header th,
+.mat-mdc-calendar .mat-calendar-table-header th span {
+  text-transform: uppercase !important;
+}
+
+/* Forzar tema oscuro en el contenido del app (toolbar de Material) */
+.mat-mdc-toolbar.spw-app-toolbar .mat-mdc-button,
+.mat-mdc-toolbar.spw-app-toolbar .mat-icon {
+  color: inherit;
 }
 

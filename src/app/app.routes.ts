@@ -13,6 +13,7 @@ export const routes: Routes = [
       import('./core/layout/shell/shell.component').then((m) => m.ShellComponent),
     canActivate: [authGuard],
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
         path: 'dashboard',
         loadComponent: () =>
@@ -20,7 +21,27 @@ export const routes: Routes = [
             (m) => m.DashboardHomeComponent
           ),
       },
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      {
+        path: 'accounts',
+        loadComponent: () =>
+          import('./features/dashboard/pages/accounts/accounts.component').then(
+            (m) => m.AccountsComponent
+          ),
+      },
+      {
+        path: 'categories',
+        loadComponent: () =>
+          import('./features/dashboard/pages/categories/categories.component').then(
+            (m) => m.CategoriesComponent
+          ),
+      },
+      {
+        path: 'transactions',
+        loadComponent: () =>
+          import('./features/dashboard/pages/transactions/transactions.component').then(
+            (m) => m.TransactionsComponent
+          ),
+      },
     ],
   },
   {
