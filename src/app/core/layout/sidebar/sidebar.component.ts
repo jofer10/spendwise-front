@@ -41,17 +41,23 @@ import { MatIconModule } from '@angular/material/icon';
       }
       .spw-sidebar-logo {
         flex-shrink: 0;
-        padding: 1rem 1rem 0.75rem;
+        padding: 0.75rem 0.5rem 0.75rem;
         border-bottom: 1px solid rgba(148, 163, 184, 0.15);
       }
       .spw-sidebar-logo-link {
         display: block;
+        width: 100%;
+        max-width: 220px;
+        height: 50px;
+        overflow: hidden;
+        margin: 0 auto;
         text-decoration: none;
       }
       .spw-sidebar-logo-img {
-        height: 36px;
+        height: 155px; /* imagen más alta que el contenedor */
         width: auto;
         display: block;
+        transform: translateY(-45px); /* desplaza para recortar parte superior/inferior */
       }
       .spw-sidebar-nav {
         flex: 1;

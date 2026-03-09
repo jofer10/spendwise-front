@@ -27,9 +27,9 @@ import { AuthService } from '../../auth/auth.service';
         border-left: 1px solid rgba(148, 163, 184, 0.2);
         border-bottom: 1px solid rgba(148, 163, 184, 0.2);
         color: #f1f5f9;
-        height: 56px;
-        min-height: 56px;
-        max-height: 56px;
+        height: 50px;
+        min-height: 50px;
+        max-height: 50px;
         flex-shrink: 0;
       }
       .spw-spacer { flex: 1 1 auto; }
