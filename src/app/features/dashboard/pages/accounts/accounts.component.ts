@@ -145,6 +145,8 @@ export class AccountsComponent implements OnInit {
   openCreate(): void {
     const ref = this.dialog.open(AccountFormDialogComponent, {
       width: '420px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'create' },
     });
     ref.afterClosed().subscribe((created) => {
@@ -155,6 +157,8 @@ export class AccountsComponent implements OnInit {
   openEdit(account: Account): void {
     const ref = this.dialog.open(AccountFormDialogComponent, {
       width: '420px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'edit', account },
     });
     ref.afterClosed().subscribe((updated) => {

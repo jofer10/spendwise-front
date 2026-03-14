@@ -567,9 +567,12 @@ app-root {
 
 .spw-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -1px; /* evita que el scroll corte el borde en móvil */
 }
 .spw-dashboard-page .mat-mdc-table {
   background: transparent !important;
+  min-width: 600px; /* permite scroll horizontal en pantallas estrechas */
 }
 .spw-dashboard-page .mat-mdc-header-row {
   background: rgba(15, 23, 42, 0.6) !important;
@@ -650,6 +653,198 @@ app-root {
 .spw-dashboard-page .spw-has-date-error .mat-mdc-form-field-subscript-wrapper {
   overflow: visible;
   min-height: 1.5em;
+}
+
+/* Responsive: pantallas pequeñas */
+@media (max-width: 768px) {
+  .spw-dashboard-page h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .spw-card-header {
+    padding: 1rem;
+  }
+  .spw-card-title {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .spw-dashboard-page h1 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .spw-card-header {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+}
+
+/* Inputs de filtros a ancho completo en móvil */
+@media (max-width: 768px) {
+  .spw-filters .mat-mdc-form-field {
+    width: 100%;
+  }
+}
+
+/* ========== Modales de la app (tema oscuro SpendWise) ========== */
+/* panelClass en overlay/container + :has() por si panelClass no se aplica */
+.spw-app-dialog .mat-mdc-dialog-container,
+.mat-mdc-dialog-container.spw-app-dialog,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) {
+  --mdc-dialog-container-color: #1e293b !important;
+  --mdc-dialog-supporting-text-color: #cbd5e1;
+  background: #1e293b !important;
+  background-color: #1e293b !important;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  overflow: hidden;
+}
+.spw-app-dialog .mat-mdc-dialog-title,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-title,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-title {
+  color: #f1f5f9 !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  padding: 1.25rem 1.5rem 0.75rem !important;
+  margin: 0 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+.spw-app-dialog .mat-mdc-dialog-content,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-content,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-content {
+  color: #e2e8f0;
+  padding: 1.25rem 1.5rem !important;
+  margin: 0 !important;
+  max-height: 65vh;
+  overflow-y: auto;
+  background: transparent !important;
+}
+.spw-app-dialog .mat-mdc-dialog-actions,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-actions,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-actions {
+  padding: 1rem 1.5rem 1.25rem !important;
+  margin: 0 !important;
+  min-height: auto !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  gap: 0.75rem;
+  justify-content: flex-end;
+  background: transparent !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mdc-text-field__input,
+.spw-app-dialog .mat-mdc-form-field .mat-mdc-input-element,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-text-field__input,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mat-mdc-input-element,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-text-field__input,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mat-mdc-input-element {
+  color: #f1f5f9 !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mdc-text-field__input::placeholder,
+.spw-app-dialog .mat-mdc-form-field .mat-mdc-input-element::placeholder,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-text-field__input::placeholder,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mat-mdc-input-element::placeholder,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-text-field__input::placeholder,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: #94a3b8 !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-value,
+.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-value-text,
+.spw-app-dialog .mat-mdc-form-field .mdc-list-item__primary-text,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-value,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-value-text,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-list-item__primary-text,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mat-mdc-select-value,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mat-mdc-select-value-text,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-list-item__primary-text {
+  color: #f1f5f9 !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mdc-floating-label,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-floating-label,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-floating-label {
+  color: #94a3b8 !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.5) !important;
+}
+.spw-app-dialog .mat-mdc-form-field:hover .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field:hover .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field:hover .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.85) !important;
+}
+.spw-app-dialog .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-app-dialog .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #22c55e !important;
+}
+.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-arrow,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field .mat-mdc-select-arrow,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field .mat-mdc-select-arrow {
+  color: #94a3b8 !important;
+}
+.spw-app-dialog .mat-mdc-button:not(.spw-btn-primary),
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-button:not(.spw-btn-primary),
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-button:not(.spw-btn-primary) {
+  color: #94a3b8 !important;
+}
+.spw-app-dialog .mat-mdc-button:not(.spw-btn-primary):hover,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-button:not(.spw-btn-primary):hover,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-button:not(.spw-btn-primary):hover {
+  color: #22c55e !important;
+  background: rgba(34, 197, 94, 0.08) !important;
+}
+.spw-app-dialog .mat-mdc-checkbox .mdc-label,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-checkbox .mdc-label,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-checkbox .mdc-label {
+  color: #e2e8f0 !important;
+}
+.spw-app-dialog .mat-mdc-checkbox .mdc-checkbox__background,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-checkbox .mdc-checkbox__background,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-checkbox .mdc-checkbox__background {
+  border-color: rgba(148, 163, 184, 0.6) !important;
+}
+.spw-app-dialog .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  border-color: #22c55e !important;
+  background-color: #22c55e !important;
+}
+.spw-app-dialog .mat-hint,
+.spw-app-dialog .mat-mdc-form-field-hint,
+.mat-mdc-dialog-container.spw-app-dialog .mat-hint,
+.mat-mdc-dialog-container.spw-app-dialog .mat-mdc-form-field-hint,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-hint,
+.mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-form-field-hint {
+  color: #94a3b8 !important;
+}
+@media (max-width: 480px) {
+  .spw-app-dialog .mat-mdc-dialog-container,
+  .mat-mdc-dialog-container.spw-app-dialog,
+  .mat-mdc-dialog-container:has(.spw-app-dialog-host) {
+    max-width: calc(100vw - 2rem);
+    margin: 1rem;
+  }
+  .spw-app-dialog .mat-mdc-dialog-title,
+  .mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-title,
+  .mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-title {
+    padding: 1rem 1.25rem 0.5rem !important;
+    font-size: 1.125rem !important;
+  }
+  .spw-app-dialog .mat-mdc-dialog-content,
+  .mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-content,
+  .mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-content {
+    padding: 1rem 1.25rem !important;
+  }
+  .spw-app-dialog .mat-mdc-dialog-actions,
+  .mat-mdc-dialog-container.spw-app-dialog .mat-mdc-dialog-actions,
+  .mat-mdc-dialog-container:has(.spw-app-dialog-host) .mat-mdc-dialog-actions {
+    padding: 0.75rem 1.25rem 1rem !important;
+  }
 }
 
 /* Panel desplegable de mat-select: tema oscuro, minimalista (no blanco) */
@@ -805,5 +1000,189 @@ app-root {
 .mat-mdc-toolbar.spw-app-toolbar .mat-mdc-button,
 .mat-mdc-toolbar.spw-app-toolbar .mat-icon {
   color: inherit;
+}
+
+/* ========== Tema oscuro en TODOS los modales (overlay) ========== */
+/* Garantiza que los dialogs se vean oscuros aunque panelClass no se aplique */
+.cdk-overlay-container .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #1e293b !important;
+  background: #1e293b !important;
+  background-color: #1e293b !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-dialog-title {
+  color: #f1f5f9 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-dialog-content {
+  color: #e2e8f0 !important;
+  background: transparent !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-dialog-actions {
+  border-top: 1px solid rgba(148, 163, 184, 0.15) !important;
+  background: transparent !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mdc-text-field__input,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-input-element {
+  color: #f1f5f9 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mdc-text-field__input::placeholder,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: #94a3b8 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mdc-floating-label,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-form-field-hint,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-hint {
+  color: #94a3b8 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-select-arrow {
+  color: #94a3b8 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.5) !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #22c55e !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-select-value,
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-form-field .mat-mdc-select-value-text {
+  color: #f1f5f9 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-button:not([color="primary"]):not(.spw-btn-primary) {
+  color: #94a3b8 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-checkbox .mdc-label {
+  color: #e2e8f0 !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-checkbox .mdc-checkbox__background {
+  border-color: rgba(148, 163, 184, 0.6) !important;
+}
+.cdk-overlay-container .mat-mdc-dialog-container .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: #22c55e !important;
+  border-color: #22c55e !important;
+}
+
+/* Clase aplicada por JS desde el componente: tema oscuro garantizado */
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-dialog-title,
+.spw-dialog-dark .mat-mdc-dialog-title {
+  color: #f1f5f9 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-dialog-content,
+.spw-dialog-dark .mat-mdc-dialog-content {
+  color: #e2e8f0 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mdc-text-field__input,
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-mdc-input-element,
+.spw-dialog-dark .mat-mdc-form-field .mdc-text-field__input,
+.spw-dialog-dark .mat-mdc-form-field .mat-mdc-input-element {
+  color: #f1f5f9 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mdc-floating-label,
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-mdc-form-field-hint,
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-hint,
+.spw-dialog-dark .mat-mdc-form-field .mdc-floating-label,
+.spw-dialog-dark .mat-mdc-form-field .mat-mdc-form-field-hint,
+.spw-dialog-dark .mat-mdc-form-field .mat-hint {
+  color: #94a3b8 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-dialog-dark .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.5) !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-dialog-dark .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+.spw-dialog-dark .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #22c55e !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-value,
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-value-text,
+.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-value,
+.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-value-text {
+  color: #f1f5f9 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-arrow,
+.spw-dialog-dark .mat-mdc-form-field .mat-mdc-select-arrow {
+  color: #94a3b8 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-button:not(.spw-btn-primary),
+.spw-dialog-dark .mat-mdc-button:not(.spw-btn-primary) {
+  color: #94a3b8 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-checkbox .mdc-label,
+.spw-dialog-dark .mat-mdc-checkbox .mdc-label {
+  color: #e2e8f0 !important;
+}
+.mat-mdc-dialog-container.spw-dialog-dark .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background,
+.spw-dialog-dark .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: #22c55e !important;
+  border-color: #22c55e !important;
+}
+
+/* Quitar doble borde/hueco del contenedor y surface del dialog cuando usamos .spw-dialog-root */
+.mat-mdc-dialog-container:has(app-account-form-dialog),
+.mat-mdc-dialog-container:has(app-category-form-dialog),
+.mat-mdc-dialog-container:has(app-transaction-form-dialog) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+.mat-mdc-dialog-container:has(app-account-form-dialog) .mat-mdc-dialog-surface,
+.mat-mdc-dialog-container:has(app-account-form-dialog) .mdc-dialog__surface,
+.mat-mdc-dialog-container:has(app-category-form-dialog) .mat-mdc-dialog-surface,
+.mat-mdc-dialog-container:has(app-category-form-dialog) .mdc-dialog__surface,
+.mat-mdc-dialog-container:has(app-transaction-form-dialog) .mat-mdc-dialog-surface,
+.mat-mdc-dialog-container:has(app-transaction-form-dialog) .mdc-dialog__surface {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+/* Modales con .spw-dialog-root (fondo oscuro dentro del componente) */
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-text-field__input,
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-input-element,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-text-field__input,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-input-element,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-text-field__input,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-input-element {
+  color: #f1f5f9 !important;
+}
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-floating-label,
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-form-field-hint,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-floating-label,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-form-field-hint,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-floating-label,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-form-field-hint {
+  color: #94a3b8 !important;
+}
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: rgba(148, 163, 184, 0.5) !important;
+}
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mdc-text-field--focused .mdc-notched-outline .mdc-notched-outline__outline,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field.mat-focused .mdc-notched-outline .mdc-notched-outline__outline {
+  border-color: #22c55e !important;
+}
+app-account-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-select-value,
+app-category-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-select-value,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-form-field .mat-mdc-select-value {
+  color: #f1f5f9 !important;
+}
+app-account-form-dialog .spw-dialog-root .mat-mdc-checkbox .mdc-label,
+app-category-form-dialog .spw-dialog-root .mat-mdc-checkbox .mdc-label,
+app-transaction-form-dialog .spw-dialog-root .mat-mdc-checkbox .mdc-label {
+  color: #e2e8f0 !important;
 }
 

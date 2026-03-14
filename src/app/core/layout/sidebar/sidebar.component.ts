@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,24 +9,24 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatIconModule, RouterLink, RouterLinkActive],
   template: `
     <div class="spw-sidebar-logo">
-      <a routerLink="/app/dashboard" class="spw-sidebar-logo-link" aria-label="SpendWise - Inicio">
+      <a routerLink="/app/dashboard" class="spw-sidebar-logo-link" aria-label="SpendWise - Inicio" (click)="closeDrawer()">
         <img src="assets/logo-spendwise.png" alt="SpendWise" class="spw-sidebar-logo-img" />
       </a>
     </div>
     <nav class="spw-sidebar-nav">
-      <a routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="spw-nav-item">
+      <a routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="spw-nav-item" (click)="closeDrawer()">
         <mat-icon class="spw-nav-icon">dashboard</mat-icon>
         <span class="spw-nav-label">Dashboard</span>
       </a>
-      <a routerLink="/app/accounts" routerLinkActive="active" class="spw-nav-item">
+      <a routerLink="/app/accounts" routerLinkActive="active" class="spw-nav-item" (click)="closeDrawer()">
         <mat-icon class="spw-nav-icon">account_balance</mat-icon>
         <span class="spw-nav-label">Cuentas</span>
       </a>
-      <a routerLink="/app/categories" routerLinkActive="active" class="spw-nav-item">
+      <a routerLink="/app/categories" routerLinkActive="active" class="spw-nav-item" (click)="closeDrawer()">
         <mat-icon class="spw-nav-icon">category</mat-icon>
         <span class="spw-nav-label">Categorías</span>
       </a>
-      <a routerLink="/app/transactions" routerLinkActive="active" class="spw-nav-item">
+      <a routerLink="/app/transactions" routerLinkActive="active" class="spw-nav-item" (click)="closeDrawer()">
         <mat-icon class="spw-nav-icon">receipt_long</mat-icon>
         <span class="spw-nav-label">Transacciones</span>
       </a>
@@ -104,4 +105,10 @@ import { MatIconModule } from '@angular/material/icon';
     `,
   ],
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  private layout = inject(LayoutService);
+
+  closeDrawer(): void {
+    this.layout.close();
+  }
+}

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../auth/auth.service';
+import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,14 @@ import { AuthService } from '../../auth/auth.service';
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
   template: `
     <mat-toolbar class="spw-app-toolbar">
+      <button
+        mat-icon-button
+        class="spw-toolbar-menu"
+        aria-label="Abrir menú"
+        (click)="openMenu()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
       <span class="spw-spacer"></span>
       <button mat-icon-button routerLink="/app/dashboard" aria-label="Dashboard" class="spw-toolbar-btn">
         <mat-icon>dashboard</mat-icon>
@@ -32,6 +41,23 @@ import { AuthService } from '../../auth/auth.service';
         max-height: 50px;
         flex-shrink: 0;
       }
+      .spw-toolbar-menu {
+        color: #94a3b8;
+        margin-right: 0.25rem;
+      }
+      .spw-toolbar-menu:hover {
+        color: #22c55e;
+      }
+      .spw-toolbar-menu mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+      @media (min-width: 769px) {
+        .spw-toolbar-menu {
+          display: none;
+        }
+      }
       .spw-spacer { flex: 1 1 auto; }
       .spw-toolbar-btn { color: #94a3b8; }
       .spw-toolbar-btn:hover { color: #22c55e; }
@@ -40,7 +66,12 @@ import { AuthService } from '../../auth/auth.service';
   ],
 })
 export class HeaderComponent {
-  constructor(private auth: AuthService) {}
+  private auth = inject(AuthService);
+  private layout = inject(LayoutService);
+
+  openMenu(): void {
+    this.layout.toggle();
+  }
 
   logout(): void {
     this.auth.logout().subscribe();

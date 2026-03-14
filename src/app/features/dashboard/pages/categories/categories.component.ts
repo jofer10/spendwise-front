@@ -160,6 +160,8 @@ export class CategoriesComponent implements OnInit {
   openCreate(): void {
     const ref = this.dialog.open(CategoryFormDialogComponent, {
       width: '420px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'create' },
     });
     ref.afterClosed().subscribe((ok) => {
@@ -170,6 +172,8 @@ export class CategoriesComponent implements OnInit {
   openEdit(category: Category): void {
     const ref = this.dialog.open(CategoryFormDialogComponent, {
       width: '420px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'edit', category },
     });
     ref.afterClosed().subscribe((ok) => {

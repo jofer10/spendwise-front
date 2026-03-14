@@ -221,6 +221,21 @@ const SPW_DATE_FORMATS = {
         flex-direction: column;
         min-width: 140px;
       }
+      @media (max-width: 768px) {
+        .spw-filters {
+          padding: 1rem;
+        }
+        .spw-filter-field,
+        .spw-date-field-wrap {
+          min-width: 0;
+          width: 100%;
+          flex: 1 1 100%;
+        }
+        .spw-filter-field.mat-mdc-form-field,
+        .spw-date-field-wrap .mat-mdc-form-field {
+          width: 100%;
+        }
+      }
       .spw-date-error-msg {
         font-size: 0.75rem;
         color: #f87171;
@@ -492,6 +507,8 @@ export class TransactionsComponent implements OnInit {
   openCreate(): void {
     const ref = this.dialog.open(TransactionFormDialogComponent, {
       width: '480px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'create', accounts: this.accounts, categories: this.categories },
     });
     ref.afterClosed().subscribe((ok) => {
@@ -502,6 +519,8 @@ export class TransactionsComponent implements OnInit {
   openEdit(txn: Transaction): void {
     const ref = this.dialog.open(TransactionFormDialogComponent, {
       width: '480px',
+      panelClass: 'spw-app-dialog',
+      disableClose: true,
       data: { mode: 'edit', transaction: txn, accounts: this.accounts, categories: this.categories },
     });
     ref.afterClosed().subscribe((ok) => {
